@@ -22,10 +22,8 @@ public class MainPage {
         profileButton.click();
         loginButton.click();
         emailInput.sendKeys(login);
-        wait.until(ExpectedConditions.elementToBeClickable(signIn));
         signIn.click();
         passwordInput.sendKeys(password);
-        wait.until(ExpectedConditions.textToBePresentInElement(passwordInput, password));
         signIn.click();
     }
 
@@ -37,10 +35,10 @@ public class MainPage {
     @FindBy(xpath = "//a[@class='button _view_primary _ui _size_medium _link']")
     private WebElement loginButton;
 
-    @FindBy(xpath = "//input[@class='Textinput-Control']")
+    @FindBy(xpath = "//input[@class='Textinput-Control'][@name='login']")
     private WebElement emailInput;
 
-    @FindBy(xpath = "//input[@class='Textinput-Control']")
+    @FindBy(xpath = "//input[@class='Textinput-Control'][@name='passwd']")
     private WebElement passwordInput;
 
     @FindBy(xpath = "//button[@class='Button2 Button2_size_l Button2_view_action Button2_width_max Button2_type_submit']")

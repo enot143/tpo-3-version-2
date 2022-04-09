@@ -39,4 +39,7 @@ public class Init {
         }
         return driver;
     }
+    public String getProperty(String name){
+        return property.getProperty(name);
+    }
 }

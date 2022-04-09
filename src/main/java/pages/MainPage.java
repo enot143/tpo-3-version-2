@@ -18,20 +18,19 @@ public class MainPage {
     }
 
 
-//    <button data-t="button:default" type="button" class="Button2 Button2_size_l Button2_view_default" autocomplete="off"><span class="Button2-Text">Почта</span></button>
     public void login(String login, String password) {
-        WebDriverWait wait = new WebDriverWait(driver,20);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='button _view_air _size_medium'][@aria-label='Профиль']")));
         profileButton.click();
         loginButton.click();
         By phoneButton = By.xpath("//button[@class='Button2 Button2_size_l Button2_view_default']");
-        try{
-            if (driver.findElement(phoneButton).isDisplayed()){
-                if (!driver.findElement(phoneButton).getText().equals("Почта")){
-                    driver.findElement(By.xpath("//button[@class='Button2 Button2_size_l Button2_view_clear']")).click();;
+        try {
+            if (driver.findElement(phoneButton).isDisplayed()) {
+                if (!driver.findElement(phoneButton).getText().equals("Почта")) {
+                    driver.findElement(By.xpath("//button[@class='Button2 Button2_size_l Button2_view_clear']")).click();
                 }
             }
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             System.out.println();
         }
         emailInput.sendKeys(login);

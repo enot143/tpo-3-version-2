@@ -33,7 +33,7 @@ public class CreateRoadTest {
 
     @AfterAll
     static void tearDown() {
-        driver.quit();
+//        driver.quit();
     }
 
     @Test
@@ -43,9 +43,9 @@ public class CreateRoadTest {
         page.login(login, password);
 
         // Выбор первой точки маршрута
-        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='input__control _bold'][@type='search']")));
-        driver.findElement(By.xpath("//input[@class='input__control _bold'][@type='search']")).sendKeys("ИТМО");
-        driver.findElement(By.xpath("//input[@class='input__control _bold'][@type='search']")).sendKeys(Keys.ENTER);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='input__control _bold']")));
+        page.getSearchInput().sendKeys("ИТМО");
+        page.getSearchInput().sendKeys(Keys.ENTER);
         driver.findElements(By.xpath("//a[@class='search-snippet-view__link-overlay']")).get(0).click();
 
         // Нажатие на кнопку "Выбрать маршрут"

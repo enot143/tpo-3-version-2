@@ -42,9 +42,9 @@ public class AddToFavoriteTest {
         page.login(login, password);
 
         // Выбор места
-        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='input__control _bold'][@type='search']")));
-        driver.findElement(By.xpath("//input[@class='input__control _bold'][@type='search']")).sendKeys("ИТМО");
-        driver.findElement(By.xpath("//input[@class='input__control _bold'][@type='search']")).sendKeys(Keys.ENTER);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='input__control _bold']")));
+        page.getSearchInput().sendKeys("ИТМО");
+        page.getSearchInput().sendKeys(Keys.ENTER);
         driver.findElements(By.xpath("//a[@class='search-snippet-view__link-overlay']")).get(0).click();
 
         driver.findElement(By.xpath("//button[@class='button _view_secondary-blue _ui _size_medium']")).click();
@@ -58,7 +58,7 @@ public class AddToFavoriteTest {
         }
 
         // Переход во вкладку "Избранное"
-        driver.findElement(By.xpath("//button[@class='button _view_air _size_medium'][@aria-label='Профиль']")).click();
+        page.getProfileButton().click();
 
         new WebDriverWait(driver, 20).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='user-menu-item-view']")));
         driver.findElements(By.xpath("//a[@class='user-menu-item-view']")).get(3).click();
@@ -78,8 +78,8 @@ public class AddToFavoriteTest {
     public void deleteFavoriteTest() {
 
         // Переход во вкладку "Избранное"
-        new WebDriverWait(driver, 20).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@class='input__control _bold'][@type='search']")));
-        driver.findElement(By.xpath("//button[@class='button _view_air _size_medium'][@aria-label='Профиль']")).click();
+        new WebDriverWait(driver, 20).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@class='input__control _bold']")));
+        page.getProfileButton().click();
         new WebDriverWait(driver, 20).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='user-menu-item-view']")));
         driver.findElements(By.xpath("//a[@class='user-menu-item-view']")).get(3).click();
 
@@ -94,7 +94,7 @@ public class AddToFavoriteTest {
         }
 
         // Переход в "Избранное"
-        driver.findElement(By.xpath("//button[@class='button _view_air _size_medium'][@aria-label='Профиль']")).click();
+        page.getProfileButton().click();
 
         new WebDriverWait(driver, 20).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='user-menu-item-view']")));
         driver.findElements(By.xpath("//a[@class='user-menu-item-view']")).get(3).click();

@@ -5,7 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,8 +22,9 @@ public class MainPage {
 
     public void login(String login, String password) {
         WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='button _view_air _size_medium'][@aria-label='Профиль']")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='button _view_air _size_medium']")));
         profileButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton));
         loginButton.click();
         By phoneButton = By.xpath("//button[@class='Button2 Button2_size_l Button2_view_default']");
         try {
@@ -33,8 +36,10 @@ public class MainPage {
         } catch (NoSuchElementException e) {
             System.out.println();
         }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='Textinput-Control'][@name='login']")));
         emailInput.sendKeys(login);
         signIn.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='Textinput-Control'][@name='passwd']")));
         passwordInput.sendKeys(password);
         signIn.click();
     }
@@ -61,5 +66,9 @@ public class MainPage {
 
     @FindBy(xpath = "//input[@class='input__control _bold']")
     private WebElement searchInput;
+
+    @FindBy(xpath = "//a[@class = 'button _view_air _size_medium _link _checked _pin-left _pin-right']")
+    private WebElement panoramaButton;
+
 }
 

@@ -9,10 +9,9 @@ import utils.Init;
 
 import java.util.concurrent.TimeUnit;
 
-public class FavouriteNoLoginTest {
+public class ShowPanoramaTest {
     public static WebDriver driver;
     public static MainPage page;
-
     @BeforeAll
     public static void setup() {
         Init init = new Init();
@@ -23,20 +22,19 @@ public class FavouriteNoLoginTest {
         driver.get("http://maps.yandex.ru/");
         page = new MainPage(driver);
     }
-
     @AfterAll
     static void tearDown() {
         driver.quit();
     }
 
     @Test
-    @DisplayName("Error Add to Favourite without login")
-    public void invalidLogin() {
-        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='input__control _bold']")));
+    public void showPanorama() {
+        WebDriverWait wait = new WebDriverWait(driver,20);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='input__control _bold']")));
         page.getSearchInput().sendKeys("ИТМО");
         page.getSearchInput().sendKeys(Keys.ENTER);
         driver.findElements(By.xpath("//a[@class='search-snippet-view__link-overlay']")).get(0).click();
-        driver.findElement(By.xpath("//button[@class='button _view_secondary-blue _ui _size_medium']")).click();
-        Assertions.assertTrue(driver.findElement(By.xpath("//div[@class='login-dialog-view _type_favorites']")).isDisplayed());
+        driver.findElement(By.xpath("//div[@class='panorama-thumbnail-view _view_org']")).click();
+        Assertions.assertTrue(driver.findElement(By.xpath("//div[@class='panorama-player']")).isDisplayed());
     }
 }

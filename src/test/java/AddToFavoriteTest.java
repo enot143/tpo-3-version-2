@@ -33,14 +33,14 @@ public class AddToFavoriteTest {
 
     @AfterAll
     static void tearDown() {
-        driver.quit();
+//        driver.quit();
     }
 
     @Test
     @Order(1)
     public void addFavoriteTest() {
         page.login(login, password);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@class='input__control _bold'][@type='search']")));
+        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='input__control _bold'][@type='search']")));
         driver.findElement(By.xpath("//input[@class='input__control _bold'][@type='search']")).sendKeys("ИТМО");
         driver.findElement(By.xpath("//input[@class='input__control _bold'][@type='search']")).sendKeys(Keys.ENTER);
 
